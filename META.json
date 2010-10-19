@@ -26,8 +26,7 @@
             "Params::Util" : 0,
             "Scalar::Util" : 0,
             "String::Formatter" : "0.102081",
-            "Sub::Exporter" : 0,
-            "perl" : "v5.12.0"
+            "Sub::Exporter" : 0
          }
       },
       "test" : {
@@ -45,7 +44,7 @@
          "url" : "git://git.codesimply.com/String-Errf.git"
       }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

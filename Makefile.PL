@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-BEGIN { require 5.12.0; }
+
 
 use ExtUtils::MakeMaker 6.31;
 
@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
     'String::Formatter' => '0.102081',
     'Sub::Exporter' => '0'
   },
-  'VERSION' => '0.001',
+  'VERSION' => '0.002',
   'test' => {
     'TESTS' => 't/*.t'
   }
