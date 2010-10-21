@@ -45,7 +45,7 @@
          "url" : "git://git.codesimply.com/String-Errf.git"
       }
    },
-   "version" : "0.003",
+   "version" : "0.004",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
