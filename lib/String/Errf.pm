@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package String::Errf;
 BEGIN {
-  $String::Errf::VERSION = '0.002';
+  $String::Errf::VERSION = '0.003';
 } # I really wanted to call it String::Fister.
 use String::Formatter 0.102081 ();
 use base 'String::Formatter';
@@ -12,7 +12,7 @@ use Scalar::Util ();
 
 
 use Carp ();
-use Date::Format ();
+use Time::Piece ();
 use Params::Util ();
 
 use Sub::Exporter -setup => {
@@ -194,11 +194,10 @@ sub _format_timestamp {
   Carp::croak("illegal time zone for %t: $zone")
     unless $zone eq 'local' or $zone eq 'UTC';
 
-  my $str = Date::Format::time2str(
-    $format,
-    $value,
-    ($zone eq 'UTC' ? 'UTC' : ()),
-  );
+  my $method = $zone eq 'UTC' ? 'gmtime' : 'localtime';
+  my $piece  = Time::Piece->$method($value);
+
+  my $str = $piece->strftime($format);
 
   return $zone eq 'UTC' ? "$str UTC" : $str;
 }
@@ -260,7 +259,7 @@ String::Errf - a simple sprintf-like dialect
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 

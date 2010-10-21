@@ -12,6 +12,7 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'a simple sprintf-like dialect',
   'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
   'BUILD_REQUIRES' => {
+    'Date::Format' => '0',
     'JSON' => '2',
     'Test::More' => '0',
     'autodie' => '0'
@@ -25,13 +26,13 @@ my %WriteMakefileArgs = (
   'NAME' => 'String::Errf',
   'PREREQ_PM' => {
     'Carp' => '0',
-    'Date::Format' => '0',
     'Params::Util' => '0',
     'Scalar::Util' => '0',
     'String::Formatter' => '0.102081',
-    'Sub::Exporter' => '0'
+    'Sub::Exporter' => '0',
+    'Time::Piece' => '0'
   },
-  'VERSION' => '0.002',
+  'VERSION' => '0.003',
   'test' => {
     'TESTS' => 't/*.t'
   }
