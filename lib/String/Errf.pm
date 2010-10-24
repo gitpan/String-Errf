@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package String::Errf;
 BEGIN {
-  $String::Errf::VERSION = '0.004';
+  $String::Errf::VERSION = '0.005';
 } # I really wanted to call it String::Fister.
 use String::Formatter 0.102081 ();
 use base 'String::Formatter';
@@ -259,7 +259,7 @@ String::Errf - a simple sprintf-like dialect
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 

@@ -33,7 +33,7 @@
          "requires" : {
             "Date::Format" : 0,
             "JSON" : "2",
-            "Test::More" : 0,
+            "Test::More" : "0.96",
             "autodie" : 0
          }
       }
@@ -45,7 +45,7 @@
          "url" : "git://git.codesimply.com/String-Errf.git"
       }
    },
-   "version" : "0.004",
+   "version" : "0.005",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -157,6 +157,17 @@
             "class" : "Dist::Zilla::Plugin::Repository",
             "name" : "@RJBS/Repository",
             "version" : "0.14"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "requires"
+               }
+            },
+            "name" : "@RJBS/TestMoreWithSubtests",
+            "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodWeaver",

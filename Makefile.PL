@@ -14,7 +14,7 @@ my %WriteMakefileArgs = (
   'BUILD_REQUIRES' => {
     'Date::Format' => '0',
     'JSON' => '2',
-    'Test::More' => '0',
+    'Test::More' => '0.96',
     'autodie' => '0'
   },
   'CONFIGURE_REQUIRES' => {
@@ -32,7 +32,7 @@ my %WriteMakefileArgs = (
     'Sub::Exporter' => '0',
     'Time::Piece' => '0'
   },
-  'VERSION' => '0.004',
+  'VERSION' => '0.005',
   'test' => {
     'TESTS' => 't/*.t'
   }
