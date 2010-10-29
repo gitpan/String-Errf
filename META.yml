@@ -25,7 +25,7 @@ requires:
   Time::Piece: 0
 resources:
   repository: git://git.codesimply.com/String-Errf.git
-version: 0.005
+version: 0.006
 x_Dist_Zilla:
   plugins:
     -

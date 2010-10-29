@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package String::Errf;
 BEGIN {
-  $String::Errf::VERSION = '0.005';
+  $String::Errf::VERSION = '0.006';
 } # I really wanted to call it String::Fister.
 use String::Formatter 0.102081 ();
 use base 'String::Formatter';
@@ -185,9 +185,9 @@ sub _format_timestamp {
   my $type = $arg->{type} || 'datetime';
   my $zone = $arg->{tz}   || 'local';
 
-  my $format = $type eq 'datetime' ? '%Y-%m-%d %T'
+  my $format = $type eq 'datetime' ? '%Y-%m-%d %H:%M:%S'
              : $type eq 'date'     ? '%Y-%m-%d'
-             : $type eq 'time'     ? '%T'
+             : $type eq 'time'     ? '%H:%M:%S'
              : Carp::croak("unknown format type for %t: $type");
 
   # Supplying a time zone is *strictly informational*. -- rjbs, 2010-10-15
@@ -259,7 +259,7 @@ String::Errf - a simple sprintf-like dialect
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
