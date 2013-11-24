@@ -1,11 +1,11 @@
 use strict;
 use warnings;
 package String::Errf;
-BEGIN {
-  $String::Errf::VERSION = '0.006';
+{
+  $String::Errf::VERSION = '0.007';
 } # I really wanted to call it String::Fister.
 use String::Formatter 0.102081 ();
-use base 'String::Formatter';
+use parent 'String::Formatter';
 # ABSTRACT: a simple sprintf-like dialect
 
 use Scalar::Util ();
@@ -42,12 +42,12 @@ sub default_string_replacer { '__replace_errf' }
 sub default_hunk_formatter  { '__format_errf' }
 
 my $regex = qr/
- (%                   # leading '%'
-  (?:{                # {
-    (.*?)             #   mandatory argument name
-    (?: ; (.*?) )?    #   optional extras after semicolon
-  })                  # }
-  ([a-z])             # actual conversion character
+ (%                      # leading '%'
+  (?:{                   # {
+    ([^;]*?)             #   mandatory argument name
+    (?: ; ([^\}]*?) )?   #   optional extras after semicolon
+  })                     # }
+  ($|.)                  # potential conversion character
  )
 /xi;
 
@@ -251,7 +251,10 @@ sub _format_numbered {
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -259,7 +262,7 @@ String::Errf - a simple sprintf-like dialect
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
@@ -277,7 +280,9 @@ version 0.006
 String::Errf provides C<errf>, a simple string formatter that works something
 like C<L<sprintf|perlfunc/sprintf>>.  It is implemented using
 L<String::Formatter> and L<Sub::Exporter>.  Their documentation may be useful
-in understanding or extending String::Errf.
+in understanding or extending String::Errf.  The C<errf> subroutine is only
+available when imported.  Calling L<String::Errf::errf> will not do what you
+want.
 
 =head1 DIFFERENCES FROM SPRINTF
 
@@ -422,10 +427,9 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Ricardo Signes.
+This software is copyright (c) 2013 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

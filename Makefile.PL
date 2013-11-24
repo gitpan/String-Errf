@@ -4,52 +4,66 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'a simple sprintf-like dialect',
-  'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Date::Format' => '0',
-    'JSON' => '2',
-    'Test::More' => '0.96',
-    'autodie' => '0'
+  "ABSTRACT" => "a simple sprintf-like dialect",
+  "AUTHOR" => "Ricardo Signes <rjbs\@cpan.org>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "DISTNAME" => "String-Errf",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "String::Errf",
+  "PREREQ_PM" => {
+    "Carp" => 0,
+    "Params::Util" => 0,
+    "Scalar::Util" => 0,
+    "String::Formatter" => "0.102081",
+    "Sub::Exporter" => 0,
+    "Time::Piece" => 0,
+    "parent" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'DISTNAME' => 'String-Errf',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'String::Errf',
-  'PREREQ_PM' => {
-    'Carp' => '0',
-    'Params::Util' => '0',
-    'Scalar::Util' => '0',
-    'String::Formatter' => '0.102081',
-    'Sub::Exporter' => '0',
-    'Time::Piece' => '0'
+  "TEST_REQUIRES" => {
+    "Date::Format" => 0,
+    "JSON" => 2,
+    "Test::More" => "0.96",
+    "autodie" => 0
   },
-  'VERSION' => '0.006',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.007",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM};
-  for my $mod ( keys %$br ) {
-    if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
-    }
-    else {
-      $pp->{$mod} = $br->{$mod};
-    }
-  }
+my %FallbackPrereqs = (
+  "Carp" => 0,
+  "Date::Format" => 0,
+  "JSON" => 2,
+  "Params::Util" => 0,
+  "Scalar::Util" => 0,
+  "String::Formatter" => "0.102081",
+  "Sub::Exporter" => 0,
+  "Test::More" => "0.96",
+  "Time::Piece" => 0,
+  "autodie" => 0,
+  "parent" => 0,
+  "strict" => 0,
+  "warnings" => 0
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
